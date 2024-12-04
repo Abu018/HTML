@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz To-Do List</title>
+    <style>
+      /* General Styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .quiz-container {
+        margin-top: 20px;
+        max-width: 600px;
+        margin: 20px auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .quiz-container:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .question {
+        font-weight: bold;
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+        color: #2c3e50;
+      }
+
+      .option {
+        margin: 8px 0;
+        padding: 12px 18px;
+        background-color: #ecf0f1;
+        border-radius: 5px;
+        border: 1px solid #dcdde1;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .option:hover {
+        background-color: #3498db;
+        color: #fff;
+        border-color: #2980b9;
+      }
+
+      .option:active {
+        background-color: #2980b9;
+      }
+
+      .correct {
+        background-color: #2ecc71;
+        color: #fff;
+      }
+
+      .incorrect {
+        background-color: #e74c3c;
+        color: #fff;
+      }
+
+      #btn {
+        display: block;
+        width: auto; /* Set width to auto for smaller size */
+        padding: 8px 15px; /* Reduced padding */
+        background-color: #3498db;
+        color: #fff;
+        font-size: 0.9rem; /* Reduced font size */
+        border: none;
+        border-radius: 5px;
+        margin: 20px auto; /* Center the button */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-align: center; /* Centered text inside the button */
+      }
+
+      #btn:hover {
+        background-color: #2980b9;
+      }
+
+      #btn:active {
+        background-color: #1f6ca2;
+      }
+
+      /* Centering the message */
+      .message {
+        text-align: center;
+        font-size: 1.5rem;
+        color: #2c3e50;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>TODO list</h1>
+    <input type="text" id="input" > </input>
+    <button onclick=Add()>submit</button>
+    <ul id="task-input"></ul>
+    <script>
+        function Add(){
+          let input=document.getElementById("input");
+          let taskInput=document.getElementById("task-input");
+
+          let val=input.value.trim();
+          
+          if(val==""){
+            alert("enter a value : ");
+            return; 
+          }
+          let li=document.createElementa("li");
+          li.textContent=val;
+          
+          let Delete=document.createElement("button");
+          Delete.textContent="Delete";
+
+          Delete.addEventListener("click",function(){
+            taskInput.removeChild(li);
+
+          })
+          li.appendChild(Delete)
+          taskInput.appendChild(li);
+
+          input.value="a"
+
+        }
+    </script>
+  </body>
+</html>

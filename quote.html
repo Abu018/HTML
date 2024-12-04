@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate A Random Password</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .generator-container {
+        margin: 20px auto;
+        max-width: 600px;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .password-display {
+        font-size: 1.2rem;
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #dcdde1;
+        border-radius: 5px;
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+      }
+
+      #generate-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+      }
+
+      #generate-btn:hover {
+        background-color: #2980b9;
+      }
+
+      #generate-btn:active {
+        background-color: #1f6ca2;
+      }
+
+      .input-group {
+        margin-top: 20px;
+      }
+
+      .input-group input {
+        width: 100px;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #dcdde1;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Generate A Random Password</h1>
+    <div class="generator-container">
+      
+        <button id="generate-btn" onclick="generateQuote()">Generate QUote</button>
+      </div>
+      <input
+        type="text"
+        id="password-display"
+        class="password-display"
+        readonly
+        placeholder="Your password will appear here"
+      />
+    </div>
+
+    <script>
+      const quotes = [
+  "The only way to do great work is to love what you do. – Steve Jobs",
+  "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
+  "The future belongs to those who believe in the beauty of their dreams. – Eleanor Roosevelt",
+  "Do not wait to strike till the iron is hot, but make it hot by striking. – William Butler Yeats",
+  "Happiness is not something ready-made. It comes from your own actions. – Dalai Lama",
+  "What you get by achieving your goals is not as important as what you become by achieving your goals. – Zig Ziglar",
+  "If opportunity doesn’t knock, build a door. – Milton Berle",
+  "In the middle of every difficulty lies opportunity. – Albert Einstein",
+  "Dream big and dare to fail. – Norman Vaughan",
+  "Don’t count the days, make the days count. – Muhammad Ali"
+];
+
+      function generateQuote() {
+       
+        const display = document.getElementById("password-display");
+        
+        let quote="";
+
+        // Generate password
+        for (let i = 0; i < 10; i++) {
+          const randomIndex = Math.floor(Math.random() *10);
+          quote += quotes[randomIndex];
+        }
+
+        // Display the password in the input box
+        display.value = quote;
+      }
+    </script>
+  </body>
+</html>

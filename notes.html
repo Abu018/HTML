@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes</title>
+    <style>
+      /* General Styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      #input {
+        display: block;
+        margin: 20px auto;
+        padding: 10px;
+        width: 80%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      #btn {
+        display: block;
+        width: auto;
+        padding: 8px 15px;
+        background-color: #3498db;
+        color: #fff;
+        font-size: 0.9rem;
+        border: none;
+        border-radius: 5px;
+        margin: 20px auto;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-align: center;
+      }
+
+      #btn:hover {
+        background-color: #2980b9;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      li {
+        margin: 10px auto;
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        max-width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      button {
+        background-color: #e74c3c;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #c0392b;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Notes</h1>
+    <input type="text" id="input" placeholder="Enter a note" />
+    <button id="btn" onclick="createNotes()">Add Note</button>
+    <ul id="task"></ul>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", loadFromLocalStorage);
+
+      function createNotes() {
+        const task = document.getElementById("task");
+        const input = document.getElementById("input");
+        const noteText = input.value.trim();
+
+        if (noteText !== "") {
+          const note = document.createElement("li");
+          note.textContent = noteText;
+
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+
+          deleteButton.addEventListener("click", function () {
+            task.removeChild(note);
+            saveToLocalStorage();
+          });
+
+          note.appendChild(deleteButton);
+          task.appendChild(note);
+
+          input.value = "";
+          saveToLocalStorage();
+        }
+      }
+
+      function saveToLocalStorage() {
+        const taskList = document.getElementById("task");
+        const listItems = taskList.getElementsByTagName("li");
+        const notes = [];
+
+        for (let i = 0; i < listItems.length; i++) {
+          notes.push(listItems[i].textContent.replace("Delete", "").trim());
+        }
+
+        localStorage.setItem("notes", JSON.stringify(notes));
+      }
+
+      function loadFromLocalStorage() {
+        const task = document.getElementById("task");
+        const storedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+
+        storedNotes.forEach((noteText) => {
+          const note = document.createElement("li");
+          note.textContent = noteText;
+
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+
+          deleteButton.addEventListener("click", function () {
+            task.removeChild(note);
+            saveToLocalStorage();
+          });
+
+          note.appendChild(deleteButton);
+          task.appendChild(note);
+        });
+      }
+    </script>
+  </body>
+</html>
